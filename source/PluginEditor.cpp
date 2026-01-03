@@ -318,8 +318,8 @@ void PluginEditor::resized()
     
     //float S1x = 0.1f; float S1y = 0.15f; //S is single knob
     
-    if (aspectRatio >= 0.0f && aspectRatio < 0.25f) { //7h-1w
-        float pY = (float)area.getHeight()/7.0f; //size of each movable block
+    if (aspectRatio >= 0.0f && aspectRatio < 0.25f) { //8h-1w
+        float pY = (float)area.getHeight()/8.0f; //size of each movable block
         float pX = (float)area.getWidth()/1.0f;
         float offsetY = 0.0f; float offsetX = 0.0f; float panelTilt = 0.5f; //1 and 2 wide don't have tilted knobs
         HIGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
@@ -346,27 +346,32 @@ void PluginEditor::resized()
         BSFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //Bass and BassF B block
         offsetY = pY*4.0f; //put between vertical SECTIONS (not knobs)
         
+        TRMKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
+        MORKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
+        MORKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Trim More D block
+        offsetY = pY*5.0f; //put between vertical SECTIONS (not knobs)
+
         LOPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LOPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         HIPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //Lowpass Highpass B block
-        offsetY = pY*5.0f; //put between vertical SECTIONS (not knobs)
+        offsetY = pY*6.0f; //put between vertical SECTIONS (not knobs)
 
        THRKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        ATKKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C2y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        RLSKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C3y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        GATKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C4y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()})); //Dynamics C block
-       offsetY = pY*6.0f; //put between vertical SECTIONS (not knobs)
+       offsetY = pY*7.0f; //put between vertical SECTIONS (not knobs)
 
         PANKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
         FADKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         FADKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Pan Fader D block
-    } //7h-1w
+    } //8h-1w
     
-    if (aspectRatio >= 0.25f && aspectRatio < 0.99f) { //43h-2w
-        float pY = (float)area.getHeight()/4.0f; //left bank is 4 knobs tall
+    if (aspectRatio >= 0.25f && aspectRatio < 0.99f) { //4h-2w
+        float pY = (float)area.getHeight()/4.0f;
         float offsetY = 0.0f; float panelTilt = 0.5f; //update the new panel tilt each time offsetY is updated. 0.0 is top panel, seen from underneath. 1.0 is bottom panel, seen from above
-        float pX = (float)area.getWidth()*0.45f;//left section width of 1/4 square
+        float pX = (float)area.getWidth()*0.5f;
         float offsetX = 0.0f;
         HIGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
@@ -392,10 +397,12 @@ void PluginEditor::resized()
         BSFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //Bass and BassF B block
 
         offsetX += pX; //put between vertical SECTIONS (not knobs)
-        pX = (float)area.getWidth()*0.55f; //left section width of 1/3 square
-        pY = (float)area.getHeight()/3.0f; //right bank is only 3 knobs tall
-        offsetX = (float)area.getWidth()*0.45f; //begin where left section stops
         offsetY = 0.0f; //put between horizontal SECTIONS (not knobs)
+
+        TRMKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
+        MORKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
+        MORKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Trim More D block
+        offsetY += pY; //put between vertical SECTIONS (not knobs)
 
         LOPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LOPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
@@ -412,12 +419,12 @@ void PluginEditor::resized()
         PANKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
         FADKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         FADKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Pan Fader D block
-    } //43h-2w
+    } //4h-2w
 
-    if (aspectRatio >= 0.99f && aspectRatio < 4.0f) { //2h-43w
+    if (aspectRatio >= 0.99f && aspectRatio < 4.0f) { //2h-4w
         float pX = (float)area.getWidth()/4.0f; //top bank is 4 knobs wide
         float offsetX = 0.0f; float panelTilt = 0.5f; //update the new panel tilt each time offsetY is updated. 0.0 is top panel, seen from underneath. 1.0 is bottom panel, seen from above
-        float pY = (float)area.getHeight()*0.45f;//top section height of 1/4 square
+        float pY = (float)area.getHeight()*0.5f;
         float offsetY = 0.0f;
         BSGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         BSGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
@@ -441,11 +448,14 @@ void PluginEditor::resized()
         HIGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         HIFKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //High and HighF B block
-        offsetX += pX; //put between horizontal SECTIONS (not knobs)
-        pY = (float)area.getHeight()*0.55f; //bottom section height of 1/3 square
-        pX = (float)area.getWidth()/3.0f; //bottom bank is only 3 knobs wide
-        offsetY = (float)area.getHeight()*0.45f; //begin where top section stops
+
+        offsetY += pY; //begin where top section stops
         offsetX = 0.0f; //put between vertical SECTIONS (not knobs)
+
+        TRMKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
+        MORKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
+        MORKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Trim More D block
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
 
         LOPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LOPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
@@ -462,53 +472,58 @@ void PluginEditor::resized()
         PANKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
         FADKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         FADKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Pan Fader D block
-    } //2h-43w
+    } //2h-4w
     
     
-    if (aspectRatio >= 4.0f && aspectRatio < 999999.0f) { //1h-7w
+    if (aspectRatio >= 4.0f && aspectRatio < 999999.0f) { //1h-8w
         float pY = (float)area.getHeight()/1.0f; //size of each movable block
-        float pX = (float)area.getWidth()/7.0f;
+        float pX = (float)area.getWidth()/8.0f;
         float offsetY = 0.0f; float offsetX = 0.0f; float panelTilt = 0.5f; //update the new panel tilt each time offsetY is updated. 0.0 is top panel, seen from underneath. 1.0 is bottom panel, seen from above
         BSGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         BSGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         BSFKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         BSFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //Bass and BassF B block
-        offsetX = pX; //put between vertical SECTIONS (not knobs)
-        
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
+
         LMGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LMGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         LMFKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LMFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //LowMid and LowMidF B block
-        offsetX = pX*2.0f; //put between vertical SECTIONS (not knobs)
-        
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
+
         HMGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HMGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         HMFKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HMFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //HighMid and HighMidF B block
-        offsetX = pX*3.0f; //put between vertical SECTIONS (not knobs)
-        
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
+
         HIGKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIGKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         HIFKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIFKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //High and HighF B block
-        offsetX = pX*4.0f; //put between vertical SECTIONS (not knobs)
-        
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
+
+        TRMKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
+        MORKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
+        MORKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Trim More D block
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
+
         LOPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         LOPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B1x))/area.getWidth(), (offsetY+(pY*B1y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()}));
         HIPKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         HIPKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*B2x))/area.getWidth(), (offsetY+(pY*B2y))/area.getHeight(), (pX*lilKnob)/area.getWidth(), (pY*lilKnob)/area.getHeight()})); //Lowpass Highpass B block
-        offsetX = pX*5.0f; //put between vertical SECTIONS (not knobs)
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
 
        THRKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        ATKKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C2y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        RLSKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C3y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
        GATKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*C1234x))/area.getWidth(), (offsetY+(pY*C4y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()})); //Dynamics C block
-        offsetX = pX*6.0f; //put between vertical SECTIONS (not knobs)
+        offsetX += pX; //put between horizontal SECTIONS (not knobs)
 
         PANKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D1x))/area.getWidth(), (offsetY+(pY*D1y))/area.getHeight(), (pX*sliderW)/area.getWidth(), (pY*sliderH)/area.getHeight()}));
         FADKnob.setColour(juce::Slider::backgroundColourId, juce::Colour().fromFloatRGBA(panelTilt, 0.0f, 0.0f, 1.0f));
         FADKnob.setBounds(area.getProportion(juce::Rectangle{(offsetX+(pX*D2x))/area.getWidth(), (offsetY+(pY*D2y))/area.getHeight(), (pX*bigKnob)/area.getWidth(), (pY*bigKnob)/area.getHeight()})); //Pan Fader D block
-    } //1h-7w
+    } //1h-8w
 }
 
 void PluginEditor::sliderValueChanged(juce::Slider *s)
